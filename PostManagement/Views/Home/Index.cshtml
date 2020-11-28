@@ -1,0 +1,72 @@
+﻿<style>
+    table, tr, td, th {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+</style>
+
+<body data-ng-app="APIModule">
+    <div id="tblpost" ng-controller="APIController">
+        <div class="container">
+            <div class="col-md-12">
+
+                <div class="col-md-2 pull-right">
+                    <div class="form-group">
+                        <input class="form-control" type="text" ng-model="searchKeyword" ng-change="getSearchData(searchKeyword)" placeholder="Search Post" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+                <table class="table table-bordered ">
+                    <tbody data-ng-repeat="post in Posts">
+                        <tr style="background-color: #e6f1f5;color: #1ab3eb; font-weight:bold;">
+                            <td>{{post.PostTitle}}</td>
+                            <td>
+                                {{post.UserName}}
+                            </td>
+                            <td>
+                                {{post.FormattedDate}}
+                            </td>
+                            <td>
+                                {{post.TotalComment}}
+                            </td>
+                        <tr data-ng-repeat="comment in post.CommentList" style="font-weight:bold;">
+                            <td>
+                                {{comment.CommentDescription}}
+                            </td>
+                            <td>
+                                {{comment.UserName}}
+                            </td>
+                            <td>
+                                {{comment.FormattedDate}}
+                            </td>
+                            <td>
+                                <span class="glyphicon glyphicon-menu-up" style="font-weight:bold; color: green;" >
+                                    
+                                    {{comment.TotalLike}}
+                                </span>
+                                <span class="glyphicon glyphicon-menu-down" style="font-weight:bold; color: red;">
+                                    
+                                    {{comment.TotalDislike}}
+                                </span>
+
+                            </td>
+                        </tr>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-route.js"></script>
+<script src="~/Scripts/APIScripts/Module.js"></script>
+<script src="~/Scripts/APIScripts/Service.js"></script>
+<script src="~/Scripts/APIScripts/Controller.js"></script>
